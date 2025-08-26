@@ -28,6 +28,7 @@ app.post('/cadastro', async (req, res) => {
             email: req.body.email,
             idade: req.body.idade
         }
+        
     })
     res.status(201).json(req.body)
 })
