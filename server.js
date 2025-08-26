@@ -28,9 +28,30 @@ app.post('/cadastro', async (req, res) => {
             email: req.body.email,
             idade: req.body.idade
         }
-        
     })
     res.status(201).json(req.body)
+})
+
+app.put('/cadastro/:id', async (req, res) => {
+    //res.send('FUNFOU O PUT!!!!!!')
+    //console.log(req.params.id)
+    await prisma.usuario.update({
+        where: { id:req.params.id },
+        data: {
+            nome: req.body.nome,
+            email: req.body.email,
+            idade: req.body.idade
+        }
+    })
+    res.status(200).json({"msg": "Usuário atualizado com sucesso!"})
+})
+
+app.delete('/cadastro/:id', async (req, res) => {
+    //res.send('FUNFOU O DELETE!!!!!!')
+    await prisma.usuario.delete({
+        where: { id:req.params.id }
+    })
+    res.status(200).json({"msg": "Usuário deletado com sucesso!"})
 })
 
 
